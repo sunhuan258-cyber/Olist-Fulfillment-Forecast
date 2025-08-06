@@ -1,85 +1,50 @@
-# Walmart Retail Sales Forecasting
-
-**Author:** Captain Xiaohuan
-**Date:** 2025-08-02
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
----
+# Olist Brazil E-Commerce: A Deep Dive into Fulfillment Time Prediction & Geospatial Analysis
 
 ## 1. Project Overview
 
-This project is an end-to-end data science initiative to forecast weekly sales for Walmart stores and departments. Utilizing historical sales data, the project implements a robust machine learning pipeline, including data cleaning, advanced feature engineering, and a comparative analysis of various models (SARIMAX, Prophet, and LightGBM).
+This project is an end-to-end data science practice targeting Brazil's largest e-commerce platform, Olist, with the core business objective of **enhancing the customer's logistics experience**.
 
-The final deliverable is a comprehensive, multi-chapter Tableau story dashboard. This dashboard not only demonstrates the model's strong predictive performance on unseen data (the entire 2012 test set) but also translates technical insights into actionable business intelligence, showcasing a complete data-to-decision workflow.
+Given Brazil's vast territory and complex logistics landscape, accurately predicting order **Fulfillment Time** is crucial for the platform to optimize operational efficiency, improve customer satisfaction, and set precise Estimated Delivery Dates.
 
----
+In this project, we went beyond building a simple "black-box" prediction model. Our core challenges and highlights include:
 
-## 2. Key Findings & Visualization Story
+*   **In-depth Feature Engineering**: From 9 raw, separate data tables, we constructed a "Data Titan" with over 40 fields through sophisticated data merging and fusion. Building on this, we creatively engineered a rich set of derivative features from three dimensions: **time**, **commerce**, and most critically, **space**.
+*   **Geospatial Analysis**: For the first time, we successfully applied the `Haversine` formula to calculate the real-world **physical straight-line distance** between customers and sellers, integrating the powerful variable of "geography" into our model.
+*   **Hybrid Intelligence Modeling**: We explored the fusion of "human intelligence" and "AI intelligence." We not only built a baseline `LightGBM` model based on manually crafted features but also, for the first time, successfully utilized an `Autoencoder` neural network to extract high-dimensional abstract features. We proved that this "AI-empowered" hybrid model could significantly **reduce the prediction error (RMSE) by 14.80%**!
+*   **Industry-Standard Experiment Management**: We used `MLFlow` throughout the project to professionally track and manage all our **experiment parameters**, **performance metrics**, and **model artifacts** in a reproducible manner.
+*   **Actionable Business Insights Visualization**: We ultimately created a "data movie" with a five-act story in `Tableau`. It not only showcases the model's accuracy but also uncovers a series of profound, actionable business insights from the geographical distribution of errors and product category characteristics, regarding **systematic overestimation**, **opportunities for creating 'wow' customer experiences**, and **future directions for model optimization**.
 
-An interactive Tableau story was created to present the project's findings in a clear, structured, and professional manner.
+This project fully demonstrates a complete, end-to-end capability in data-driven problem-solving, from raw data exploration and complex feature creation to advanced model application and, finally, the extraction of valuable business insights.
 
-### Chapter 1: Model Performance on Unseen Data
-![Chapter 1: Overview](images/01_overview.png)
-*   **Key Insight:** This chapter showcases the model's remarkable performance on the 2012 test set. Trained solely on 2010-2011 data, the model's predictions (orange line) closely track the actual sales (blue line), proving its strong generalization capabilities.
+## 2. Key Findings & Visualizations
 
-### Chapter 2: Peak Sales Analysis (Stress Test)
-![Chapter 2: Peak 1 Analysis](images/02_overview.png)
-*   **Key Insight:** Focusing on the spring sales peak around April 6, 2012, we observed that the model successfully captured the upward trend but exhibited a two-week lag in predicting the exact peak. This highlights a key model characteristic and area for future improvement.
+Our core insights unfold through the following five-act data story:
 
-### Chapter 3: Stability Analysis (Cross-Validation)
-![Chapter 3: Peak 2 Analysis](images/03_overview.png)
-*   **Key Insight:** During the stable, non-peak period in July 2012, the model's forecast accurately captured the baseline trend while effectively filtering out random noise. This demonstrates its strength as a trend predictor rather than a noise follower.
+### Act I: The Curse of Distance
+As expected in a country as vast as Brazil, physical distance is the most fundamental factor affecting logistics efficiency. The scatter plot below clearly illustrates the undeniable, strong positive correlation between fulfillment time and the distance between customer and seller.
+![Distance Curse](images/01_distance_curse.png)
 
-### Chapter 4: From Prediction to Business Insight
-![Chapter 4: Business Value](images/04_overview.png)
-*   **Key Insight:** The final chapter translates the model's technical success into tangible business value, outlining its applications in intelligent inventory management, targeted marketing, and agile workforce allocation.
+### Act II: The Landscape of Reality
+To understand the geographical distribution of fulfillment times, we first mapped the average actual fulfillment time for each Brazilian state. The darker the color, the longer the waiting time. We can clearly see that the remote northwestern states present the most severe logistical challenges.
+![Reality Map](images/02_reality.png)
 
----
+### Act III: The Gaze of AI
+Next, we mapped the average fulfillment time as predicted by our model. Comparing this with the "reality map," we were stunned to find that our LightGBM model almost perfectly replicates the real world's macro-logistical patterns. This proves our model's powerful predictive capabilities and its deep understanding of the business.
+![Prediction Map](images/03_prediction.png)
 
-## 3. Modeling Process
+### Act IV: The Scream of the Error
+However, beneath this perfect replication lies a deeper truth. This "error heatmap" reveals a core tendency of our model: a systematic "pessimism" (overestimating fulfillment time). All states show a negative error (represented in red), with the lightest shades indicating the regions where the model overestimates the most. This is no longer just an "error"; it's a **strategic opportunity** for us to create 'wow' customer experiences and crush the competition in these areas!
+![Error Heatmap](images/04_error_heatmap.png)
 
-- **Algorithm:** **LightGBM** was selected for its high efficiency and accuracy in handling large-scale tabular data.
-- **Feature Engineering:** Key features included time-based attributes (year, month, week), lag features (sales from the previous week and year), and rolling-window features (e.g., 4-week rolling average).
-- **Train/Test Strategy:** A strict temporal split was enforced using `2012-01-01` as the cutoff date, ensuring a realistic evaluation of the model's ability to forecast the future.
+### Act V: The Fate of the Category
+Finally, we shift our focus from "space" to the "product" itself. This bar chart clearly reveals the inherent "prediction difficulty" associated with different product categories. The longer the bar, the larger the average absolute error for that category. We found that bulky items like "home appliances" and "furniture" are the most difficult to predict. This provides a clear strategic direction for future model optimization esforços, focusing on category-specific models.
+![Category Destiny](images/05_category_destiny.png)
 
----
+## 3. How to Reproduce
 
-## 4. Technologies & Tools
-
-- **Language:** Python
-- **Libraries:** Pandas, Scikit-learn, LightGBM, Matplotlib, Seaborn, Prophet, Statsmodels
-- **BI Tool:** Tableau
-- **Version Control:** Git & GitHub
-
----
-
-## 5. Getting Started
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/YourUsername/Retail-Sales-Forecasting.git
-    ```
-    (Please replace `YourUsername` with your actual GitHub username).
-2.  **Explore the analysis:**
-    - Raw data is located in the `/data` directory.
-    - The complete analysis, feature engineering, and modeling process can be found in `/notebooks/walmart_sales_analysis.ipynb`.
-3.  **Interact with the dashboard:**
-    - Download the `walmart_sales_story.twbx` file from the root directory.
-    - Open it with Tableau Public or Tableau Reader (free) to explore the interactive story.
-
----
-
-## 6. Repository Structure
-
-```
-.
-├── data/
-├── images/
-├── models/
-├── notebooks/
-├── .gitignore
-├── LICENSE
-├── README.md
-└── walmart_sales_story.twbx
-```
+1.  **Clone the Repository**: `git clone https://github.com/sunhuan258-cyber/Olist-Brazil-E-Commerce-A-Deep-Dive-into-Fulfillment-Time-Prediction-Geospatial-Analysis.git`
+2.  **Set Up Environment**: Ensure your Python environment has the core libraries installed: `pandas`, `numpy`, `lightgbm`, `mlflow`, `scikit-learn`, `haversine`, `jupyterlab`.
+3.  **Prepare Data**: Place the 9 original Olist `.csv` datasets into the `data/` folder.
+4.  **Run Merging Notebook**: Open and run `notebooks/OLIST-Link.ipynb` to generate `olist_final_analysis_dataset.csv`.
+5.  **Run Main Notebook**: Open and run `notebooks/OLIST.ipynb` to perform feature engineering, model training, MLFlow tracking, and to generate the final `olist_visualization_data_FULL.csv`.
+6.  **Explore Visualization**: Open the `巴西业务.twbx` file (requires Tableau Desktop or Tableau Public) to interactively explore our data story.
