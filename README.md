@@ -22,27 +22,27 @@ Our core insights unfold through the following five-act data story:
 
 ### Act I: The Curse of Distance
 As expected in a country as vast as Brazil, physical distance is the most fundamental factor affecting logistics efficiency. The scatter plot below clearly illustrates the undeniable, strong positive correlation between fulfillment time and the distance between customer and seller.
-*Image Placeholder: 01_distance_curse
+![Distance Curse](https://raw.githubusercontent.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/main/images/01_distance_curse.png)
 
 ### Act II: The Landscape of Reality
 To understand the geographical distribution of fulfillment times, we first mapped the average actual fulfillment time for each Brazilian state. The darker the color, the longer the waiting time. We can clearly see that the remote northwestern states present the most severe logistical challenges.
-*Image Placeholder:02_reality
+![Reality Map](https://raw.githubusercontent.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/main/images/02_reality.png)
 
 ### Act III: The Gaze of AI
 Next, we mapped the average fulfillment time as predicted by our model. Comparing this with the "reality map," we were stunned to find that our LightGBM model almost perfectly replicates the real world's macro-logistical patterns. This proves our model's powerful predictive capabilities and its deep understanding of the business.
-*Image Placeholder:03_prediction
+![Prediction Map](https://raw.githubusercontent.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/main/images/03_prediction.png)
 
 ### Act IV: The Scream of the Error
 However, beneath this perfect replication lies a deeper truth. This "error heatmap" reveals a core tendency of our model: a systematic "pessimism" (overestimating fulfillment time). All states show a negative error (represented in red), with the lightest shades indicating the regions where the model overestimates the most. This is no longer just an "error"; it's a **strategic opportunity** for us to create 'wow' customer experiences and crush the competition in these areas!
-*Image Placeholder:04_error_heatmap
+![Error Heatmap](https://raw.githubusercontent.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/main/images/04_error_heatmap.png)
 
 ### Act V: The Fate of the Category
 Finally, we shift our focus from "space" to the "product" itself. This bar chart clearly reveals the inherent "prediction difficulty" associated with different product categories. The longer the bar, the larger the average absolute error for that category. We found that bulky items like "home appliances" and "furniture" are the most difficult to predict. This provides a clear strategic direction for future model optimization, focusing on category-specific models.
-*Image Placeholder: 05_category_destiny
+![Category Destiny](https://raw.githubusercontent.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/main/images/05_category_destiny.png)
 
 ## 3. How to Reproduce
 
-1.  **Clone the Repository**: `git clone https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast.git` (Note: Please use the new repository name you've chosen).
+1.  **Clone the Repository**: `git clone https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast.git`
 2.  **Set Up Environment**: Ensure your Python environment has the core libraries installed: `pandas`, `numpy`, `lightgbm`, `mlflow`, `scikit-learn`, `haversine`, `jupyterlab`.
 3.  **Prepare Data**: Place the 9 original Olist `.csv` datasets into the `data/` folder.
 4.  **Run Merging Notebook**: Open and run `notebooks/OLIST-Link.ipynb` to generate `olist_final_analysis_dataset.csv`.
