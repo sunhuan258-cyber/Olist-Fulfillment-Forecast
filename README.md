@@ -22,23 +22,23 @@ Our core insights unfold through the following five-act data story:
 
 ### Act I: The Curse of Distance
 As expected in a country as vast as Brazil, physical distance is the most fundamental factor affecting logistics efficiency. The scatter plot below clearly illustrates the undeniable, strong positive correlation between fulfillment time and the distance between customer and seller.
-*Image Placeholder: https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/blob/main/images/01_distance_curse.png?raw=true
+*Image Placeholder: 01_distance_curse
 
 ### Act II: The Landscape of Reality
 To understand the geographical distribution of fulfillment times, we first mapped the average actual fulfillment time for each Brazilian state. The darker the color, the longer the waiting time. We can clearly see that the remote northwestern states present the most severe logistical challenges.
-*Image Placeholder:https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/blob/main/images/02_reality.png?raw=true
+*Image Placeholder:02_reality
 
 ### Act III: The Gaze of AI
 Next, we mapped the average fulfillment time as predicted by our model. Comparing this with the "reality map," we were stunned to find that our LightGBM model almost perfectly replicates the real world's macro-logistical patterns. This proves our model's powerful predictive capabilities and its deep understanding of the business.
-*Image Placeholder: https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/blob/main/images/03_prediction.png?raw=true
+*Image Placeholder:03_prediction
 
 ### Act IV: The Scream of the Error
 However, beneath this perfect replication lies a deeper truth. This "error heatmap" reveals a core tendency of our model: a systematic "pessimism" (overestimating fulfillment time). All states show a negative error (represented in red), with the lightest shades indicating the regions where the model overestimates the most. This is no longer just an "error"; it's a **strategic opportunity** for us to create 'wow' customer experiences and crush the competition in these areas!
-*Image Placeholder: https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/blob/main/images/04_error_heatmap.png?raw=true
+*Image Placeholder:04_error_heatmap
 
 ### Act V: The Fate of the Category
 Finally, we shift our focus from "space" to the "product" itself. This bar chart clearly reveals the inherent "prediction difficulty" associated with different product categories. The longer the bar, the larger the average absolute error for that category. We found that bulky items like "home appliances" and "furniture" are the most difficult to predict. This provides a clear strategic direction for future model optimization, focusing on category-specific models.
-*Image Placeholder: https://github.com/sunhuan258-cyber/Olist-Fulfillment-Forecast/blob/main/images/05_category_destiny.png?raw=true
+*Image Placeholder: 05_category_destiny
 
 ## 3. How to Reproduce
 
